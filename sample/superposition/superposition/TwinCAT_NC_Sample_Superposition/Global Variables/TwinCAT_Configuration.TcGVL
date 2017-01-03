@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <GVL Name="TwinCAT_Configuration" Id="{a23511a0-a8cc-441a-ba48-be34b8af7064}">
+    <Declaration><![CDATA[{attribute 'Tc2GvlVarNames'}
+(* Generated automatically by TwinCAT - (read only) *)
+VAR_CONFIG
+	MAIN.Axis1.PlcToNc AT %QB0 : PLCTONC_AXIS_REF;
+	MAIN.Axis1.NcToPlc AT %IB0 : NCTOPLC_AXIS_REF;	(*  ~ {LinkedWith:TINC^NC-Task 1 SAF^Axes^Axis 1^Outputs^Axis 1_ToPlc} *)
+	MAIN.Axis2.PlcToNc AT %QB128 : PLCTONC_AXIS_REF;
+	MAIN.Axis2.NcToPlc AT %IB128 : NCTOPLC_AXIS_REF;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

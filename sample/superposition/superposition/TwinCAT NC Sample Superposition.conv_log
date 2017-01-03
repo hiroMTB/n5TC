@@ -1,0 +1,7 @@
+"	Axis1.ReadStatus" Replaced by	"	Axis1.ReadStatus()"       (MAIN, Line 1, Column 6)
+"	Axis2.ReadStatus" Replaced by	"	Axis2.ReadStatus()"       (MAIN, Line 2, Column 6)
+"	ActPower"         Replaced by	"	ActPower()"               (MAIN, Line 106, Column 9)
+"	ActMove"          Replaced by	"	ActMove()"                (MAIN, Line 107, Column 8)
+"	ActReset"         Replaced by	"	ActReset()"               (MAIN, Line 108, Column 9)
+"	ActCouple"        Replaced by	"	ActCouple()"              (MAIN, Line 109, Column 10)
+"	ActSuperposition" Replaced by	"	ActSuperposition()"       (MAIN, Line 110, Column 17)
