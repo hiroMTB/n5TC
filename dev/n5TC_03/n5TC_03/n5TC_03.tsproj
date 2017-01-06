@@ -1417,15 +1417,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="1">
 					<Name>Axis 1</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
 						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Range="100"/>
-							<SoftEndMaxControl Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -1627,17 +1625,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="2">
 					<Name>Axis 2</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="19">
 						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Range="100"/>
-							<SoftEndMaxControl Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
-							<ParameterChanged>11</ParameterChanged>
-							<ParameterChanged>12</ParameterChanged>
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -1841,15 +1835,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="3">
 					<Name>Axis 3</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Range="100"/>
-							<SoftEndMaxControl Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -1913,8 +1905,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -1967,6 +1959,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
@@ -2053,15 +2065,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="4">
 					<Name>Axis 4</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Enable="true" Range="100"/>
-							<SoftEndMaxControl Enable="true" Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -2125,8 +2135,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -2179,6 +2189,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
@@ -2265,15 +2295,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="5">
 					<Name>Axis 5</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Range="100"/>
-							<SoftEndMaxControl Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -2337,8 +2365,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -2391,6 +2419,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
@@ -2477,15 +2525,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="6">
 					<Name>Axis 6</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Enable="true" Range="100"/>
-							<SoftEndMaxControl Enable="true" Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -2549,8 +2595,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -2603,6 +2649,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
@@ -2689,15 +2755,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="7">
 					<Name>Axis 7</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Range="100"/>
-							<SoftEndMaxControl Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -2761,8 +2825,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -2815,6 +2879,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
@@ -2901,15 +2985,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="8">
 					<Name>Axis 8</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Enable="true" Range="100"/>
-							<SoftEndMaxControl Enable="true" Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -2973,8 +3055,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -3027,6 +3109,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
@@ -3113,15 +3215,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="9">
 					<Name>Axis 9</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Range="100"/>
-							<SoftEndMaxControl Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -3185,8 +3285,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -3239,6 +3339,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
@@ -3325,15 +3445,13 @@ External Setpoint Generation:
 				<Axis CreateSymbols="true" AxisType="1" Id="10">
 					<Name>Axis 10</Name>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="219069"/>
+						<Dynamic AccelerationMaximum="20000" DecelerationMaximum="20000" Acceleration="10000" Deceleration="10000" Jerk="200000"/>
 						<Velo Maximum="1000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
-					<Encoder Name="Enc" EncType="19">
-						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536" MaxCount="#xffffffff">
-							<SoftEndMinControl Enable="true" Range="100"/>
-							<SoftEndMaxControl Enable="true" Range="900"/>
-							<Inc RefSearchInverse="true" RefMode="5"/>
+					<Encoder Name="Enc" EncType="1">
+						<EncPara ScaleFactorNumerator="90" ScaleFactorDenominator="65536">
+							<Inc RefSearchInverse="true"/>
 						</EncPara>
 						<Vars VarGrpType="1">
 							<Name>Inputs</Name>
@@ -3397,8 +3515,8 @@ External Setpoint Generation:
 							</Var>
 						</Vars>
 					</Encoder>
-					<Drive Name="Drive" DrvType="16">
-						<DrvPara MaxCount="#xffffffff" DriveControlDWord="#x00000100">
+					<Drive Name="Drive" DrvType="5">
+						<DrvPara>
 							<Analog VeloReferenz="1100"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
@@ -3451,6 +3569,26 @@ Drive Status 4 (manually linked):
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut2</Name>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl2</Name>
+									<Comment>
+										<![CDATA[Digital Outputs Setpoint Generator:
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
+								</SubVar>
+								<SubVar>
+									<Name>nCtrl3</Name>
+									<Comment>
+										<![CDATA[Digital Outputs (Setpoint Generator + Position Controller):
+0x41 (0100 0001) = Minus (0x42 for inverse motor polarity)
+0x42 (0100 0010) = Plus (0x41 for inverse motor polarity)
+0x80 (1000 0000) = Stop
+]]>
+									</Comment>
 								</SubVar>
 								<SubVar TypeFormatIndex="2">
 									<Name>nDataOut3</Name>
