@@ -60,95 +60,35 @@ VAR
 	GetErrorId	: UDINT;
 
 	error : BOOL := FALSE;
+	resetTest : BOOL := FALSE;
+	enableTest : BOOL := FALSE;
+	recovered : BOOL := FALSE;
+	afterHomeTimer : TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
 axis.ReadStatus();
 
-	IF axis.Status.Error THEN
-		state := STAGE_ERROR;
+power.Enable := TRUE;
+IF powerOut.Done THEN
+	homeFesto.Execute := TRUE;
+END_IF
+
+
+IF homeFestoOut.Done OR (axis.Status.Error AND axis.Status.ErrorID = 18000) THEN
+	afterHomeTimer(IN:=TRUE, PT:=T#500MS);
+	IF afterHomeTimer.Q THEN
 		reset.Execute := TRUE;
-		
-	ELSE
-		state := STAGE_INIT; 
-		
-		IF axis.Status.Disabled THEN	
-			state := STAGE_ENABLE;
-			power.Enable := TRUE;
-			IF powerOut.Error THEN
-				reset.Execute := TRUE;
-				error := TRUE;
-			END_IF
-		ELSE
-
-			IF axis.Status.Homed = FALSE OR cmd_need_home THEN
-				state := STAGE_HOMING; 
-
-				IF homeFestoOut.Error THEN
-					homeFesto.Execute := FALSE;
-					error := TRUE;
-				ELSE
-					homeFesto.Execute := TRUE;
-					cmd_need_home := FALSE;
-				END_IF
-				
-			ELSE
-				state := STAGE_WAIT; 
-				homeFesto.Execute := FALSE;
-				
-				IF cmd_need_exe THEN
-					state := STAGE_MOVING;
-		 
-					IF moveAbsOut.Busy THEN
-						moveAbs2.Position := cmd_pos;
-						moveAbs2.Velocity := cmd_vel;
-						moveAbs2.BufferMode := MC_Aborting;
-						moveAbs2.Execute := TRUE;
-					ELSE
-						moveAbs.Position := cmd_pos;
-						moveAbs.Velocity := cmd_vel;
-						moveAbs.BufferMode := MC_Aborting;
-						moveAbs.Execute := TRUE;
-					END_IF;		
-				
-					cmd_need_exe := FALSE;
-				END_IF;		
-		
-				IF moveAbsOut.Done THEN
-					moveAbs.Execute := FALSE;
-				ELSIF moveAbsOut.CommandAborted THEN
-					moveAbs.Execute := FALSE;
-				ELSIF moveAbsOut.Error THEN
-					error := TRUE;
-				END_IF
-				
-				IF moveAbsOut2.Done THEN
-					moveAbs2.Execute := FALSE;
-				ELSIF moveAbsOut2.CommandAborted THEN
-					moveAbs2.Execute := FALSE;
-				ELSIF moveAbsOut2.Error THEN
-					error := TRUE;
-				END_IF
-	
-			END_IF
-		END_IF
 	END_IF
-	
-	ActPower();
-	ActRead();
-	ActHalt();
-	actMove();
-	ActReset();
-	ActHomeFesto();
-		
-	IF haltOut.Done OR haltOut.Error THEN
-		cmd_halt := FALSE;
-	END_IF
+END_IF
 
-	IF resetOut.Done OR haltOut.Error THEN
-		reset.Execute := FALSE;
-	END_IF
+ActPower();
+ActRead();
+ActHalt();
+actMove();
+ActReset();
+ActHomeFesto();
 ]]></ST>
     </Implementation>
     <Action Name="ActHalt" Id="{d5c01865-609c-415d-9648-2a332c575221}">
@@ -2855,56 +2795,25 @@ axis.ReadStatus();
     <LineIds Name="AxisCtrl">
       <LineId Id="806" Count="0" />
       <LineId Id="810" Count="0" />
-      <LineId Id="773" Count="0" />
-      <LineId Id="782" Count="0" />
-      <LineId Id="817" Count="0" />
-      <LineId Id="816" Count="0" />
-      <LineId Id="778" Count="0" />
-      <LineId Id="728" Count="0" />
-      <LineId Id="843" Count="0" />
-      <LineId Id="669" Count="0" />
-      <LineId Id="674" Count="0" />
       <LineId Id="729" Count="0" />
-      <LineId Id="792" Count="1" />
-      <LineId Id="841" Count="0" />
-      <LineId Id="794" Count="0" />
       <LineId Id="754" Count="0" />
-      <LineId Id="830" Count="0" />
-      <LineId Id="683" Count="0" />
-      <LineId Id="731" Count="0" />
-      <LineId Id="737" Count="0" />
-      <LineId Id="758" Count="1" />
-      <LineId Id="797" Count="0" />
-      <LineId Id="760" Count="0" />
-      <LineId Id="823" Count="1" />
-      <LineId Id="822" Count="0" />
-      <LineId Id="783" Count="0" />
-      <LineId Id="757" Count="0" />
-      <LineId Id="733" Count="0" />
-      <LineId Id="735" Count="0" />
-      <LineId Id="734" Count="0" />
-      <LineId Id="688" Count="0" />
-      <LineId Id="741" Count="1" />
-      <LineId Id="691" Count="19" />
-      <LineId Id="800" Count="0" />
-      <LineId Id="799" Count="0" />
-      <LineId Id="779" Count="0" />
-      <LineId Id="777" Count="0" />
-      <LineId Id="716" Count="3" />
-      <LineId Id="802" Count="2" />
-      <LineId Id="801" Count="0" />
-      <LineId Id="680" Count="0" />
-      <LineId Id="689" Count="1" />
-      <LineId Id="789" Count="0" />
+      <LineId Id="909" Count="0" />
+      <LineId Id="824" Count="0" />
+      <LineId Id="912" Count="0" />
+      <LineId Id="937" Count="0" />
+      <LineId Id="941" Count="0" />
+      <LineId Id="943" Count="0" />
+      <LineId Id="924" Count="0" />
+      <LineId Id="946" Count="0" />
+      <LineId Id="933" Count="0" />
+      <LineId Id="945" Count="0" />
+      <LineId Id="947" Count="0" />
+      <LineId Id="910" Count="0" />
       <LineId Id="65" Count="1" />
       <LineId Id="787" Count="0" />
       <LineId Id="254" Count="0" />
       <LineId Id="786" Count="0" />
-      <LineId Id="788" Count="0" />
-      <LineId Id="164" Count="0" />
-      <LineId Id="167" Count="1" />
-      <LineId Id="809" Count="0" />
-      <LineId Id="844" Count="3" />
+      <LineId Id="847" Count="0" />
       <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
