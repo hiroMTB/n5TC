@@ -5,6 +5,7 @@
 VAR
 	axisCtrls : ARRAY[1 .. 10] OF AxisCtrl;
 	i : INT := 0;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>

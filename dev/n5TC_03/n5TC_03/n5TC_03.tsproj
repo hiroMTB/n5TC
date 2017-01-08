@@ -1315,6 +1315,60 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d</Printf>
+				<Parameter>[0]</Parameter>
+				<Parameter>[1]</Parameter>
+				<Parameter>[2]</Parameter>
+				<Parameter>[3]</Parameter>
+				<Parameter>[4]</Parameter>
+				<Parameter>[5]</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000042}" TcBaseType="true" CName="AmsAddr">AMSADDR</Name>
+			<BitSize>64</BitSize>
+			<SubItem>
+				<Name>netId</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				<BitSize>48</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>port</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d:%d</Printf>
+				<Parameter>.netId[0]</Parameter>
+				<Parameter>.netId[1]</Parameter>
+				<Parameter>.netId[2]</Parameter>
+				<Parameter>.netId[3]</Parameter>
+				<Parameter>.netId[4]</Parameter>
+				<Parameter>.netId[5]</Parameter>
+				<Parameter>.port</Parameter>
+			</Format>
+			<Format Name="Iec">
+				<Printf>(netId:=[%d.%d.%d.%d.%d.%d], port :=%d)</Printf>
+				<Parameter>.netId[0]</Parameter>
+				<Parameter>.netId[1]</Parameter>
+				<Parameter>.netId[2]</Parameter>
+				<Parameter>.netId[3]</Parameter>
+				<Parameter>.netId[4]</Parameter>
+				<Parameter>.netId[5]</Parameter>
+				<Parameter>.port</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
 			<Name GUID="{85DC3E7A-8ADA-435B-9479-25573909A7DB}" Namespace="AX5000" TcBaseType="true">E_AX5000_P_0275_ActiveFeedbackAndMemory</Name>
 			<BitSize>8</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -3771,6 +3825,10 @@ External Setpoint Generation:
 							</SubVar>
 						</Var>
 						<Var>
+							<Name>MAIN.axisCtrls[1].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.axisCtrls[2].axis.NcToPlc</Name>
 							<Type GUID="{6A65C767-34E5-42BF-AD87-E1A503EAC7BE}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 							<SubVar>
@@ -3818,6 +3876,10 @@ External Setpoint Generation:
 ]]>
 								</Comment>
 							</SubVar>
+						</Var>
+						<Var>
+							<Name>MAIN.axisCtrls[2].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.axisCtrls[3].axis.NcToPlc</Name>
@@ -3869,6 +3931,10 @@ External Setpoint Generation:
 							</SubVar>
 						</Var>
 						<Var>
+							<Name>MAIN.axisCtrls[3].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.axisCtrls[4].axis.NcToPlc</Name>
 							<Type GUID="{6A65C767-34E5-42BF-AD87-E1A503EAC7BE}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 							<SubVar>
@@ -3916,6 +3982,10 @@ External Setpoint Generation:
 ]]>
 								</Comment>
 							</SubVar>
+						</Var>
+						<Var>
+							<Name>MAIN.axisCtrls[4].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.axisCtrls[5].axis.NcToPlc</Name>
@@ -3967,6 +4037,10 @@ External Setpoint Generation:
 							</SubVar>
 						</Var>
 						<Var>
+							<Name>MAIN.axisCtrls[5].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.axisCtrls[6].axis.NcToPlc</Name>
 							<Type GUID="{6A65C767-34E5-42BF-AD87-E1A503EAC7BE}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 							<SubVar>
@@ -4014,6 +4088,10 @@ External Setpoint Generation:
 ]]>
 								</Comment>
 							</SubVar>
+						</Var>
+						<Var>
+							<Name>MAIN.axisCtrls[6].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.axisCtrls[7].axis.NcToPlc</Name>
@@ -4065,6 +4143,10 @@ External Setpoint Generation:
 							</SubVar>
 						</Var>
 						<Var>
+							<Name>MAIN.axisCtrls[7].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.axisCtrls[8].axis.NcToPlc</Name>
 							<Type GUID="{6A65C767-34E5-42BF-AD87-E1A503EAC7BE}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 							<SubVar>
@@ -4112,6 +4194,10 @@ External Setpoint Generation:
 ]]>
 								</Comment>
 							</SubVar>
+						</Var>
+						<Var>
+							<Name>MAIN.axisCtrls[8].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.axisCtrls[9].axis.NcToPlc</Name>
@@ -4163,6 +4249,10 @@ External Setpoint Generation:
 							</SubVar>
 						</Var>
 						<Var>
+							<Name>MAIN.axisCtrls[9].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.axisCtrls[10].axis.NcToPlc</Name>
 							<Type GUID="{6A65C767-34E5-42BF-AD87-E1A503EAC7BE}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 							<SubVar>
@@ -4210,6 +4300,10 @@ External Setpoint Generation:
 ]]>
 								</Comment>
 							</SubVar>
+						</Var>
+						<Var>
+							<Name>MAIN.axisCtrls[10].amsAddr</Name>
+							<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="2">
@@ -4300,6 +4394,28 @@ External Setpoint Generation:
 						<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
 							<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 1">
 								<Link VarA="MAIN.axisCtrls[0].axis.NcToPlc" TypeA="MC.NCTOPLC_AXIS_REF" InOutA="0" GuidA="{6A65C767-34E5-42BF-AD87-E1A503EAC7BE}" VarB="Outputs^ToPlc" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2017-01-08T02:41:18">
+						<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+							<OwnerB Name="TIID^NIC^Ctr1">
+								<Link VarA="MAIN.axisCtrls[1].deviceNetID" TypeA="TC2_SYSTEM.T_AmsNetID" InOutA="0" GuidA="{C71BE36A-63A7-4312-8F40-FB60F8F253C5}" VarB="InfoData^AdsAddr^netId" Size="48" OldTypeA="TC2_SYSTEM.T_AmsNetID" OldGuidA="{C71BE36A-63A7-4312-8F40-FB60F8F253C5}" RestoreInfo="TypeMismatch" NewTypeA="STRING(5)" NewGuidA="{18071995-0000-0000-0000-000100000005}"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2017-01-08T02:46:11">
+						<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+							<OwnerB Name="TIID^NIC^Ctr1">
+								<Link VarA="MAIN.axisCtrls[1].devicePort" TypeA="TC2_SYSTEM.T_AmsPort" InOutA="0" GuidA="{A7DE8C66-BB88-47EB-872A-4720A90B3787}" VarB="InfoData^AdsAddr^port" OldTypeA="TC2_SYSTEM.T_AmsPort" OldGuidA="{A7DE8C66-BB88-47EB-872A-4720A90B3787}" RestoreInfo="TypeMismatch" NewTypeA="UINT" NewGuidA="{18071995-0000-0000-0000-000000000005}"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
+					<UnrestoredVarLinks ImportTime="2017-01-08T02:54:08">
+						<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+							<OwnerB Name="TIID^NIC^Ctr1">
+								<Link VarA="MAIN.axisCtrls[1].deviceNetID" TypeA="STRING(5)" InOutA="0" GuidA="{18071995-0000-0000-0000-000100000005}" VarB="InfoData^AdsAddr^netId" RestoreInfo="ANotFound"/>
+								<Link VarA="MAIN.axisCtrls[1].devicePort" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="InfoData^AdsAddr^port" RestoreInfo="ANotFound"/>
 							</OwnerB>
 						</OwnerA>
 					</UnrestoredVarLinks>
@@ -4473,6 +4589,7 @@ External Setpoint Generation:
 		</Io>
 	</Project>
 	<Mappings>
+		<MappingInfo Identifier="{01010011-0020-0304-1000-010120000403}" Id="#x02030050" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{01010011-0010-0304-1000-010110000403}" Id="#x02030040" Watchdog="00000000000000000000000000000000"/>
 		<MappingInfo Identifier="{05000010-0011-0101-3000-040310000101}" Id="#x02030030" Watchdog="14000000040000000400000004000000"/>
 		<MappingInfo Identifier="{00000000-0020-0304-3000-040320000403}" Id="#x02030020"/>
@@ -4513,7 +4630,11 @@ External Setpoint Generation:
 		</OwnerA>
 		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
 			<OwnerB Name="TIID^NIC^Ctr1">
+				<Link VarA="PlcTask Inputs^MAIN.axisCtrls[1].amsAddr" VarB="InfoData^AdsAddr"/>
 				<Link VarA="PlcTask Inputs^MAIN.axisCtrls[1].dig_in" VarB="Input3^swn"/>
+			</OwnerB>
+			<OwnerB Name="TIID^NIC^Ctr2">
+				<Link VarA="PlcTask Inputs^MAIN.axisCtrls[2].amsAddr" VarB="InfoData^AdsAddr"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 1">
 				<Link VarA="PlcTask Inputs^MAIN.axisCtrls[1].axis.NcToPlc" VarB="Outputs^ToPlc"/>
