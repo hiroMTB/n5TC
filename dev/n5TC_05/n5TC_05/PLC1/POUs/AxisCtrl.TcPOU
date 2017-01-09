@@ -76,7 +76,7 @@ END_VAR
 			moveAbs.Execute := FALSE;
 			reset.Execute := FALSE;
 			power.Enable := FALSE;
-			state := MOVESTATE_ENABLE;
+			(*state := MOVESTATE_ENABLE;*)
 			
 		MOVESTATE_ENABLE:
 			power.Enable := TRUE;
