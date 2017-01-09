@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4020.12">
+  <DUT Name="MoveState_t" Id="{14676720-1ed8-4939-a6d7-49cff4ae6e5c}">
+    <Declaration><![CDATA[TYPE MoveState_t :
+(
+	 MOVESTATE_RESET,
+	 MOVESTATE_INIT,
+	 MOVESTATE_ENABLE,
+	 MOVESTATE_HOMING,
+	 MOVESTATE_MOVING,
+	 MOVESTATE_ERROR	
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

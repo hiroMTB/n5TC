@@ -87,6 +87,7 @@ VAR
 	GetErrorWasAbortive	:BOOL;
 	GetErrorId	: UDINT;
 
+	afterHomeTimer: TON;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -98,8 +99,8 @@ END_VAR
 			moveAbs.Execute := FALSE;
 			reset.Execute := FALSE;
 			power.Enable := FALSE;
-			
 			state := MOVESTATE_ENABLE;
+			
 		MOVESTATE_ENABLE:
 			power.Enable := TRUE;
 			
@@ -111,11 +112,13 @@ END_VAR
 			
 		MOVESTATE_HOMING:
 
-			IF axis.Status.Homed THEN
-			 	HomingExecute := FALSE;
-				state := MOVESTATE_MOVING;				
+			IF homeFestoOut.Done OR (axis.Status.Error AND axis.Status.ErrorID = 18000) THEN
+				afterHomeTimer(IN:=TRUE, PT:=T#500MS);
+				IF afterHomeTimer.Q THEN
+					reset.Execute := TRUE;
+				END_IF
 			ELSE
-				HomingExecute := TRUE;				
+				HomingExecute := TRUE;
 			END_IF
 		
 		MOVESTATE_MOVING:		
@@ -5502,8 +5505,9 @@ END_VAR
       <LineId Id="533" Count="0" />
       <LineId Id="12" Count="4" />
       <LineId Id="108" Count="0" />
-      <LineId Id="580" Count="0" />
-      <LineId Id="18" Count="2" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="668" Count="0" />
+      <LineId Id="19" Count="1" />
       <LineId Id="107" Count="0" />
       <LineId Id="103" Count="0" />
       <LineId Id="22" Count="1" />
@@ -5512,7 +5516,7 @@ END_VAR
       <LineId Id="27" Count="0" />
       <LineId Id="255" Count="0" />
       <LineId Id="568" Count="0" />
-      <LineId Id="571" Count="2" />
+      <LineId Id="669" Count="4" />
       <LineId Id="577" Count="0" />
       <LineId Id="579" Count="0" />
       <LineId Id="569" Count="0" />
