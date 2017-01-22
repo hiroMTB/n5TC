@@ -76,7 +76,7 @@ END_VAR
 			moveAbs.Execute := FALSE;
 			reset.Execute := FALSE;
 			power.Enable := FALSE;
-			(*state := MOVESTATE_ENABLE;*)
+			state := MOVESTATE_ENABLE;
 			
 		MOVESTATE_ENABLE:
 			power.Enable := TRUE;
@@ -92,13 +92,13 @@ END_VAR
 			IF NOT homeFestoOut.Done THEN
 				homeFesto.Execute := TRUE;				
 			ELSIF homeFestoOut.Done OR (axis.Status.Error AND axis.Status.ErrorID = 18000) THEN
-				afterHomeTimer(IN:=TRUE, PT:=T#500MS);
+				afterHomeTimer(IN:=TRUE, PT:=T#1500MS);
 				IF afterHomeTimer.Q THEN
-					reset.Execute := TRUE;
+					(*reset.Execute := TRUE; *)
 					state := MOVESTATE_MOVING;
 				END_IF
 			END_IF
-		
+			
 		MOVESTATE_MOVING:		
 			IF cmd_need_exe THEN
 				IF moveAbs.Busy THEN
@@ -142,13 +142,16 @@ END_VAR
 
 		MOVESTATE_RESET :
 			reset.Execute := TRUE;
-			IF reset.Done THEN
+			IF resetOut.Done THEN
 				state := MOVESTATE_INIT;
-			ELSIF reset.Error THEN
+			ELSIF resetOut.Error THEN
 				state := MOVESTATE_INIT;
 			END_IF
 	END_CASE
 	
+	IF(axis.Status.ErrorID = 18000) THEN
+		state := MOVESTATE_RESET;
+	END_IF
 	
 	ActPower();
 	ActMove();
@@ -161,7 +164,7 @@ END_VAR
 		cmd_halt := FALSE;
 	END_IF
 	
-	
+
 
 (*
 power.Enable := TRUE;
@@ -1307,7 +1310,7 @@ END_IF
                             </o>
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"100000"</v>
+                                <v n="Operand">"400000"</v>
                                 <v n="Type">"DINT"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -1326,7 +1329,7 @@ END_IF
                             </o>
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"100000"</v>
+                                <v n="Operand">"400000"</v>
                                 <v n="Type">"DINT"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -1681,7 +1684,7 @@ END_IF
                             </o>
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"100000"</v>
+                                <v n="Operand">"400000"</v>
                                 <v n="Type">"DINT"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -1700,7 +1703,7 @@ END_IF
                             </o>
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"100000"</v>
+                                <v n="Operand">"400000"</v>
                                 <v n="Type">"DINT"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -2884,9 +2887,15 @@ END_IF
       <LineId Id="1016" Count="22" />
       <LineId Id="1040" Count="2" />
       <LineId Id="1113" Count="0" />
-      <LineId Id="1043" Count="59" />
+      <LineId Id="1043" Count="1" />
+      <LineId Id="1243" Count="0" />
+      <LineId Id="1046" Count="50" />
+      <LineId Id="1310" Count="1" />
+      <LineId Id="1309" Count="0" />
+      <LineId Id="1097" Count="5" />
       <LineId Id="1106" Count="5" />
-      <LineId Id="1012" Count="1" />
+      <LineId Id="1308" Count="0" />
+      <LineId Id="1013" Count="0" />
       <LineId Id="729" Count="0" />
       <LineId Id="754" Count="0" />
       <LineId Id="909" Count="0" />
