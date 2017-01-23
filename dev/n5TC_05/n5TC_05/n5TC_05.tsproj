@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4020.28">
 	<DataTypes>
 		<DataType>
@@ -1896,6 +1896,7 @@ External Setpoint Generation:
 					<Name>Axis 3</Name>
 					<AxisPara>
 						<Dynamic AccelerationMaximum="50000" DecelerationMaximum="50000" Acceleration="15000" Deceleration="15000" Jerk="100000"/>
+
 						<Velo Maximum="5000"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
